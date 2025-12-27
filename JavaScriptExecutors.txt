@@ -1,0 +1,91 @@
+package SeleniumPractice;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class JavaScriptExecutors {
+
+	public static void main(String []args) throws InterruptedException
+	{
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.get("https://testautomationpractice.blogspot.com/");
+		driver.manage().window().maximize();
+		
+//		JavascriptExecutor js2 = (JavascriptExecutor)driver;
+//		js2.executeScript("window.scrollBy(0,1000)","");
+//		System.out.println(js2.executeScript("return window.pageYoffset;"));
+//		Thread.sleep(3000);
+		
+		
+//		WebElement From = driver.findElement(By.xpath("//button[@type=\"submit\"]"));
+//		
+//		JavascriptExecutor js3 = (JavascriptExecutor)driver;
+//		Thread.sleep(3000);
+//		js3.executeScript("arguments[o],scrollIntoview();",target);
+//		System.out.println(js3.executeScript("return window.pageYoffset;"));
+		
+		
+		//zoom the page by using JavaScript executor
+		
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+//		Thread.sleep(3000);
+		js.executeScript("document.body.style.zoom='150%'");
+		Thread.sleep(3000);
+//		js.executeScript("document.body.style.zoom='50%'");
+		
+	WebElement email =	driver.findElement(By.xpath("//input[@id='email']"));
+		js.executeScript("arguments[0].style.background='Orange';",email);
+		
+		js.executeScript("arguments[0].style.border='2px red solid';",email);
+		
+		
+	  WebElement address = driver.findElement(By.xpath("//textarea[@id='textarea']"));
+	  js.executeScript("arguments[0].style.background = 'green';",address);
+	  js.executeScript("arguments[0].style.border='4px green solid';",address);
+	  
+	  
+	  WebElement page = driver.findElement(By.xpath("//div[@class='fauxborder-left main-fauxborder-left']"));
+	  js.executeScript("arguments[0].style.background='violet';",page);
+	  
+	  WebElement element = driver.findElement(By.xpath("//div[@id='navbar']"));
+	  js.executeScript("arguments[0].style.background='yellow';",element);
+	  
+	  WebElement elem = driver.findElement(By.xpath("//input[@id='phone']"));
+	  js.executeScript("arguments[0].style.background='yellow';",elem);
+	  js.executeScript("arguments[0].style.border='5px blue dashed';",elem);
+	  
+	  WebElement elem1 = driver.findElement(By.xpath("//td[@class='columns-cell']"));
+	  js.executeScript("arguments[0].style.background='orange';",elem1);
+	  
+	  
+	 
+	  
+	  
+	  WebElement elem2 = driver.findElement(By.xpath("//p[normalize-space()='Date Picker 1 (mm/dd/yyyy):']"));
+	  js.executeScript("arguments[0].style.background='green';",elem2);
+	  js.executeScript("arguments[0].style.border='8px black solid';",elem2);
+	  
+	  WebElement first = driver.findElement(By.xpath("//input[@id='datepicker']"));
+	  js.executeScript("arguments[0].style.border='5px red solid';",first);
+	  js.executeScript("arguments[0].style.background='blue';",first);
+	  
+	  //drag and drop
+	  WebElement source = driver.findElement(By.xpath("//div[@id='draggable']"));
+	  js.executeScript("arguments[0].style.background='blue';",source);
+	  WebElement target = driver.findElement(By.xpath("//div[@id='droppable']"));
+	  js.executeScript("arguments[0].style.background='green';",target);
+	  
+	  Actions action = new Actions(driver);
+	  action.dragAndDrop(source, target).perform();
+	  
+	  
+	  
+	}
+}
